@@ -1,12 +1,14 @@
 #!/bin/bash
 
-CUDA_VISIBLE_DEVICES=0 python ../src/train_bash.py \
+CUDA_VISIBLE_DEVICES=5 python ../src/train_bash.py \
+    --model_name_or_path /data/yuanrz/model/chatglm2-6b \
     --stage sft \
     --do_train \
     --dataset alpaca_gpt4_zh \
     --dataset_dir ../data \
     --finetuning_type lora \
-    --output_dir path_to_sft_checkpoint \
+    --lora_rank 8 \
+    --output_dir ../work_dirs/alpaca_gpt4_zh/train_lora_r8 \
     --overwrite_cache \
     --per_device_train_batch_size 4 \
     --gradient_accumulation_steps 4 \
